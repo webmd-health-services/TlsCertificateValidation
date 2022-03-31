@@ -84,4 +84,4 @@ Build:
         TestResult:
             Enabled: true
             OutputPath: .output\pester.xml
-            TestSuiteName: Template-PSModule-OSS-Apache2.0
+            TestSuiteName: TlsCertificateValidation
