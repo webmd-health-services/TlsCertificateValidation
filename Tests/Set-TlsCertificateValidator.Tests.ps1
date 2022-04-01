@@ -2,6 +2,11 @@
 #Requires -Version 5.1
 Set-StrictMode -Version 'Latest'
 
+if( -not (Test-Path -Path 'variable:IsMacOS') )
+{
+    [Diagnostics.CodeAnalysis.SuppressMessage('PSAvoidAssignmentToAutomaticVariable', '')]
+    $IsMacOS = $false
+}
 
 BeforeAll {
     & (Join-Path -Path $PSScriptRoot -ChildPath 'Initialize-Test.ps1' -Resolve)
@@ -61,7 +66,7 @@ Describe 'Set-TlsCertificateValidator' {
         } | Should -Not -Throw
     }
 
-    It 'should handle script block returning true values <_>' -TestCases @($true, 1) {
+    It 'should handle script block returning true values <_>' -TestCases @($true, 1) -Skip:$IsMacOS {
         $result = $_
         {
             Set-TlsCertificateValidator { return $result }
