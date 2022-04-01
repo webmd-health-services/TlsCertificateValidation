@@ -18,13 +18,13 @@
     RootModule = 'TlsCertificateValidation.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.0.0'
+    ModuleVersion = '0.1.0'
 
     # ID used to uniquely identify this module
-    GUID = ''
+    GUID = '41180ebf-f757-436d-87ed-437e23cc10b8'
 
     # Author of this module
-    Author = 'WebMD Health Services'
+    Author = 'Aaron Jensen'
 
     # Company or vendor of this module
     CompanyName = 'WebMD Health Services'
@@ -36,7 +36,15 @@
     Copyright = '(c) WebMD Health Services.'
 
     # Description of the functionality provided by this module
-    Description = ''
+    Description = @"
+The "TlsCertificateValidation" PowerShell module allows you to manage TLS server certificate validation. With it, you
+can:
+
+* Completely disable TLS server certificate validation with its `Disable-TlsCertificateValidation` function.
+* Write your own server certificate validation in PowerShell with its `Set-TlsCertificateValidator` function.
+* Check if PowerShell supports the `SkipCertificateCheck` switch on `Invoke-WebRequest` and `Invoke-RestMethod` with its
+  `Test-SkipCertificateChec` function.
+"@
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -76,6 +84,11 @@
 
     # Functions to export from this module. Only list public function here.
     FunctionsToExport = @(
+        'Clear-TlsCertificateValidator',
+        'Disable-TlsCertificateValidation',
+        'Enable-TlsCertificateValidation',
+        'Set-TlsCertificateValidator',
+        'Test-SkipCertificateCheck'
     )
 
     # Cmdlets to export from this module. By default, you get a script module, so there are no cmdlets.
@@ -102,7 +115,23 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @( 'Desktop', 'Core' )
+            Tags = @(
+                'ssl',
+                'tls',
+                'x509',
+                'self-signed',
+                'selfsigned',
+                'self',
+                'signed',
+                'certificate',
+                'validate',
+                'validation',
+                'servicepointmanager',
+                'servercertificatevalidationcallback',
+                'certificatepolicy',
+                'Desktop',
+                'Core'
+            )
 
             # A URL to the license for this module.
             LicenseUri = 'http://www.apache.org/licenses/LICENSE-2.0'
@@ -116,8 +145,7 @@
             Prerelease = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = @'
-'@
+            ReleaseNotes = 'https://github.com/webmd-health-services/TlsCertificateValidation/blob/main/CHANGELOG.md'
         } # End of PSData hashtable
 
     } # End of PrivateData hashtable
