@@ -3,8 +3,9 @@ Build:
 - Version:
     Path: TlsCertificateValidation\TlsCertificateValidation.psd1
     Prerelease:
-    - "*/*": alpha$(WHISKEY_BUILD_NUMBER)
-    - develop: rc$(WHISKEY_BUILD_NUMBER)
+    - main: ""
+    - "*": rc0
+    IncrementPatchVersion: true
 
 # Update the AppVeyor build/version number.
 - Exec:
