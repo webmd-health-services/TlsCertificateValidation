@@ -5,13 +5,13 @@ Build:
     Prerelease:
     - main: ""
     - "*": rc0
-    IncrementPatchVersion: true
+    IncrementPrereleaseVersion: true
 
 # Update the AppVeyor build/version number.
 - Exec:
       OnlyBy: BuildServer
       Path: appveyor
-      Argument: [ UpdateBuild, -Version, $(WHISKEY_SEMVER2) ]
+      Argument: [ UpdateBuild, -Version, "$(WHISKEY_SEMVER2)+$(WHISKEY_BUILD_NUMBER)" ]
 
 - PowerShell:
     ScriptBlock: prism install | Format-Table -Auto
