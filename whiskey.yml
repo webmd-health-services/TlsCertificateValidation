@@ -84,3 +84,5 @@ Build:
             Enabled: true
             OutputPath: .output\pester.xml
             TestSuiteName: TlsCertificateValidation
+        Output:
+            Verbosity: Detailed
