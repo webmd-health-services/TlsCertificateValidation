@@ -16,11 +16,17 @@
 Set-StrictMode -Version 'Latest'
 
 # Functions should use $moduleRoot as the relative root from which to find
-# things. A published module has its function appended to this file, while a 
+# things. A published module has its function appended to this file, while a
 # module in development has its functions in the Functions directory.
 $moduleRoot = $PSScriptRoot
 
-Add-Type -Path (Join-Path -Path $moduleRoot -ChildPath 'ServerCertificateCallbackShim.cs')
+Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath 'Modules\Carbon.Core' -Resolve) `
+              -Function @('Test-CType')
+
+if (-not (Test-CType -Name 'TlsCertificateValidation.ServerCertificateCallbackShim'))
+{
+    Add-Type -Path (Join-Path -Path $moduleRoot -ChildPath 'ServerCertificateCallbackShim.cs')
+}
 
 $functionsPath = Join-Path -Path $moduleRoot -ChildPath 'Functions\*.ps1'
 if( (Test-Path -Path $functionsPath) )

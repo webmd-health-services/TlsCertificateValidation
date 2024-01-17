@@ -1,0 +1,10 @@
+{
+    "PSModules": [
+        {
+            "Name": "Carbon.Core",
+            "Version": "1.4.0-rc1"
+        }
+    ],
+
+    "PSModulesDirectoryName": "TlsCertificateValidation\\Modules"
+}

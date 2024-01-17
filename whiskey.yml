@@ -1,8 +1,4 @@
 
-PublishOn:
-- main
-- prerelease
-
 Build:
 - Version:
     Path: TlsCertificateValidation\TlsCertificateValidation.psd1
@@ -15,6 +11,9 @@ Build:
       OnlyBy: BuildServer
       Path: appveyor
       Argument: [ UpdateBuild, -Version, $(WHISKEY_SEMVER2) ]
+
+- PowerShell:
+    ScriptBlock: prism install | Format-Table -Auto
 
 # Dot-sourcing files is expensive. Move all functions into .psm1 file to improve import speed. Do this before testing
 # to ensure the module still works.
@@ -50,7 +49,7 @@ Build:
 
 - Zip:
     ArchivePath: .output\TlsCertificateValidation-$(WHISKEY_SEMVER2).zip
-    Path: 
+    Path:
     - TlsCertificateValidation
     Exclude:
     - "*.pdb"
@@ -76,8 +75,8 @@ Build:
     ]
 
 - Pester:
-    Configuration: 
-        Run: 
+    Configuration:
+        Run:
             Path: Tests\*.Tests.ps1
             Exit: true
             Throw: true
