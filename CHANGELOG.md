@@ -1,5 +1,17 @@
+<!--markdownlint-disable MD012 no-multiple-blanks-->
 
-# 0.1.0
+# TlsCertificateValidation Changelog
+
+## 1.0.0
+
+> Released 17 Jan 2024
+
+Fixed: importing `TlsCertificateValidation` can sometimes fail with a "type already exists" compilation error.
+
+
+## 0.1.0
+
+> Released 1 Apr 2024
 
 # Added
 

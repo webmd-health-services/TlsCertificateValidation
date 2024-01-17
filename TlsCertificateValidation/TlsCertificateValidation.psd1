@@ -18,7 +18,7 @@
     RootModule = 'TlsCertificateValidation.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.1.0'
+    ModuleVersion = '1.0.0'
 
     # ID used to uniquely identify this module
     GUID = '41180ebf-f757-436d-87ed-437e23cc10b8'
