@@ -12,7 +12,7 @@ function Set-TlsCertificateValidator
     invalid and should not be trusted.
 
     The script block is passed four *optional* parameters, in this order:
-    
+
     * `[Object] $Sender`: contains state information for the validation.
     * `[Security.Cryptography.X509Certificates.X509Certificate2] $Certificate`: the certificate to validate.
     * `[Security.Cryptography.X509Certificates.X509Chain] $Chain`: the certificate chain of the certificate.
@@ -34,5 +34,5 @@ function Set-TlsCertificateValidator
 
     Set-StrictMode -Version 'Latest'
 
-    [TlsCertificateValidation.ServerCertificateCallbackShim]::RegisterScriptBlockValidator($ScriptBlock)
+    $script:serverCertCallbackShim::RegisterScriptBlockValidator($ScriptBlock)
 }

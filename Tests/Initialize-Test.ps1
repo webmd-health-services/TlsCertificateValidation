@@ -13,7 +13,7 @@ Execute this script as the first thing in each of your test fixtures:
 
     #Requires -Version 5.1
     Set-StrictMode -Version 'Latest'
-    
+
     & (Join-Path -Path $PSScriptRoot -ChildPath 'Initialize-Test.ps1' -Resolve)
 #>
 [CmdletBinding()]
@@ -25,6 +25,18 @@ $originalWhatIfPref = $Global:WhatIfPreference
 
 $Global:VerbosePreference = $VerbosePreference = 'SilentlyContinue'
 $Global:WhatIfPreference = $WhatIfPreference = $false
+
+# Create fake implementations of TlsCertificateValidation's static classes to ensure that the module explicitly uses
+# types from the assembly it ships with.
+Add-Type -TypeDefinition @"
+namespace TlsCertificateValidation
+{
+    public static class ServerCertificateCallbackShim
+    {
+        public static string Name { get { return "ServerCertificateCallbackShim"; } }
+    }
+}
+"@
 
 try
 {

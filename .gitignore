@@ -1,8 +1,13 @@
-/.output
-/PSModules
-/.vscode
+/.output/
+/PSModules/
+/.vscode/
+/TlsCertificateValidation/bin/
 /TlsCertificateValidation/CHANGELOG.md
 /TlsCertificateValidation/LICENSE
 /TlsCertificateValidation/NOTICE
 /TlsCertificateValidation/README.md
 /TlsCertificateValidation/Modules
+/Source/bin/
+/Source/obj/
+/Source/.vs/
+/packages/

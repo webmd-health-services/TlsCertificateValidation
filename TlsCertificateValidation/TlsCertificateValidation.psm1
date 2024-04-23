@@ -20,12 +20,15 @@ Set-StrictMode -Version 'Latest'
 # module in development has its functions in the Functions directory.
 $moduleRoot = $PSScriptRoot
 
-Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath 'Modules\Carbon.Core' -Resolve) `
-              -Function @('Test-CType')
-
-if (-not (Test-CType -Name 'TlsCertificateValidation.ServerCertificateCallbackShim'))
+$assemblyPath = Join-Path -Path $script:moduleRoot -ChildPath 'bin\TlsCertificateValidation.dll' -Resolve
+$assembly = [AppDomain]::CurrentDomain.GetAssemblies() | Where-Object 'Location' -EQ $assemblyPath
+$assemblyTypes = $assembly.GetTypes()
+$script:serverCertCallbackShim = $assemblyTypes | Where-Object 'Name' -EQ 'ServerCertificateCallbackShim'
+if (-not $script:serverCertCallbackShim)
 {
-    Add-Type -Path (Join-Path -Path $moduleRoot -ChildPath 'ServerCertificateCallbackShim.cs')
+    $msg = "Failed to find [TlsCertificateValidation.ServerCertificateCallbackShim] type from assembly " +
+           """${assemblyPath}""."
+    Write-Error -Message $msg
 }
 
 $functionsPath = Join-Path -Path $moduleRoot -ChildPath 'Functions\*.ps1'

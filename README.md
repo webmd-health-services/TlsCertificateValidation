@@ -1,4 +1,8 @@
-# Overview
+<!--markdownlint-disable MD012 no-multiple-blanks-->
+
+# TlsCertificateValidation PowerShell Module
+
+## Overview
 
 The "TlsCertificateValidation" PowerShell module allows you to manage how Windows PowerShell's `Invoke-WebRequest` and
 `Invoke-RestMethod` cmdlet validate TLS server certificates. With it, you can:
@@ -9,9 +13,9 @@ The "TlsCertificateValidation" PowerShell module allows you to manage how Window
   `Test-SkipCertificateChec` function.
 
 
-# System Requirements
+## System Requirements
 
-* Windows PowerShell 5.1 and .NET 4.6.1+
+* Windows PowerShell 5.1 and .NET 4.8
 * PowerShell 6+ [1]
 
 ## A Note About PowerShell 6 Support
@@ -20,11 +24,11 @@ This module uses the global `[Net.ServicePointManager]::ServerCertificateValidat
 validation. In PowerShell 6+, the `Invoke-WebRequest` and `Invoke-RestMethod` functions don't use this global callback,
 and instead have a `SkipCertificateCheck` switch to disable server certificate validation. This module will not work
 on PowerShell 6+ when trying to bypass server certificate checks that fail under `Invoke-WebRequest` and
-`Invoke-RestMethod`. This module should work with other .NET classes that use the 
+`Invoke-RestMethod`. This module should work with other .NET classes that use the
 `[Net.ServicePointManager]::ServerCertificateValidationCallback` callback.
 
 
-# Installing
+## Installing
 
 To install globally:
 
@@ -40,7 +44,7 @@ Save-Module -Name 'TlsCertificateValidation' -Path '.'
 Import-Module -Name '.\TlsCertificateValidation'
 ```
 
-# Usage
+## Usage
 
 ```powershell
 $iwrArgs = @{}
@@ -67,9 +71,9 @@ finally
 ```
 
 
-# Commands
+## Commands
 
-## Disable-TlsCertificateValidation
+### Disable-TlsCertificateValidation
 
 Disables all TLS server certificate validation by accepting all certificates.
 
@@ -77,7 +81,7 @@ Disables all TLS server certificate validation by accepting all certificates.
 Disable-TlsCertificateValidation
 ```
 
-## Enable-TlsCertificateValidation
+### Enable-TlsCertificateValidation
 
 Re-enables PowerShell's default server certificate validation behavior.
 
@@ -85,7 +89,7 @@ Re-enables PowerShell's default server certificate validation behavior.
 Enable-TlsCertificateValidation
 ```
 
-## Set-TlsCertificateValidator
+### Set-TlsCertificateValidator
 
 Use your own code to validate TLS server certificates:
 
@@ -93,7 +97,7 @@ Use your own code to validate TLS server certificates:
 Set-TlsCertificateValidator -ScriptBlock {
     param(
         [Object] $Sender,
-        
+
         [Security.Cryptography.X509Certificates.X509Certificate2] $Certificate,
 
         [Security.Cryptography.X509Certificates.X509Chain] $Chain,
@@ -119,7 +123,7 @@ Set-TlsCertificateValidator -ScriptBlock {
 
 The above example demonstrates a server certificate validation script block that accepts self-signed certificates.
 
-## Clear-TlsCertificateValidator
+### Clear-TlsCertificateValidator
 
 Removes your custom validator. Call this function once you've finished making requests, otherwise your validator will
 continue to be used in the current PowerShell session.
@@ -128,7 +132,7 @@ continue to be used in the current PowerShell session.
 Clear-TlsCertificateValidator
 ```
 
-## Test-SkipCertificateCheck
+### Test-SkipCertificateCheck
 
 Use this function if you want to support multiple versions of PowerShell and some of those versions don't have the
 `SkipCertificateCheck` functionality. Returns `$true` if PowerShell's `Invoke-WebRequest` and `Invoke-RestMethod`
