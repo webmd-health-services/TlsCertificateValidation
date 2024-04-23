@@ -13,6 +13,17 @@ Build:
       Path: appveyor
       Argument: [ UpdateBuild, -Version, "$(WHISKEY_SEMVER2)+$(WHISKEY_BUILD_NUMBER)" ]
 
+- DotNet:
+    Command: build
+    WorkingDirectory: Source
+    Argument:
+    - --configuration=$(WHISKEY_MSBUILD_CONFIGURATION)
+    - -p:Version=$(WHISKEY_SEMVER2)
+
+- CopyFile:
+    Path: Source\bin\netstandard2.0\*
+    DestinationDirectory: TlsCertificateValidation\bin
+
 - PowerShell:
     ScriptBlock: prism install | Format-Table -Auto
 

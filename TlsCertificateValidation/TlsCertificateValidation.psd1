@@ -18,7 +18,7 @@
     RootModule = 'TlsCertificateValidation.psm1'
 
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '2.0.0'
 
     # ID used to uniquely identify this module
     GUID = '41180ebf-f757-436d-87ed-437e23cc10b8'
@@ -68,7 +68,7 @@ can:
     # RequiredModules = @()
 
     # Assemblies that must be loaded prior to importing this module
-    # RequiredAssemblies = @( )
+    RequiredAssemblies = @('bin\TlsCertificateValidation.dll')
 
     # Script files (.ps1) that are run in the caller's environment prior to importing this module.
     # ScriptsToProcess = @()

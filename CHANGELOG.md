@@ -2,6 +2,18 @@
 
 # TlsCertificateValidation Changelog
 
+## 2.0.0
+
+### Changed
+
+TlsCertificateValidation now requires .NET Framework 4.8 (from 4.6.1) when running under Windows PowerShell.
+
+### Fixed
+
+On some systems, anti-virus interferes with the dynamic assembly TlsCertificateValidation attempts to compile and load
+with `Add-Type`. The module now ships with a pre-built assembly.
+
+
 ## 1.0.0
 
 > Released 17 Jan 2024
