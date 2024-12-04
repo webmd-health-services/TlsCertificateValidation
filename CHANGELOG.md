@@ -2,7 +2,13 @@
 
 # TlsCertificateValidation Changelog
 
+## 2.0.1
+
+Removing unused internal, private, nested dependencies.
+
 ## 2.0.0
+
+> Released 1 Jul 2024
 
 ### Changed
 
