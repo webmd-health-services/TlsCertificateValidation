@@ -34,5 +34,5 @@ function Set-TlsCertificateValidator
 
     Set-StrictMode -Version 'Latest'
 
-    $script:serverCertCallbackShim::RegisterScriptBlockValidator($ScriptBlock)
+    [TlsCertificateValidation.v2.ServerCertificateCallbackShim]::RegisterScriptBlockValidator($ScriptBlock)
 }

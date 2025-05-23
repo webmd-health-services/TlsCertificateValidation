@@ -18,20 +18,9 @@ Set-StrictMode -Version 'Latest'
 # Functions should use $moduleRoot as the relative root from which to find
 # things. A published module has its function appended to this file, while a
 # module in development has its functions in the Functions directory.
-$moduleRoot = $PSScriptRoot
+$script:moduleRoot = $PSScriptRoot
 
-$assemblyPath = Join-Path -Path $script:moduleRoot -ChildPath 'bin\TlsCertificateValidation.dll' -Resolve
-$assembly = [AppDomain]::CurrentDomain.GetAssemblies() | Where-Object 'Location' -EQ $assemblyPath
-$assemblyTypes = $assembly.GetTypes()
-$script:serverCertCallbackShim = $assemblyTypes | Where-Object 'Name' -EQ 'ServerCertificateCallbackShim'
-if (-not $script:serverCertCallbackShim)
-{
-    $msg = "Failed to find [TlsCertificateValidation.ServerCertificateCallbackShim] type from assembly " +
-           """${assemblyPath}""."
-    Write-Error -Message $msg
-}
-
-$functionsPath = Join-Path -Path $moduleRoot -ChildPath 'Functions\*.ps1'
+$functionsPath = Join-Path -Path $script:moduleRoot -ChildPath 'Functions\*.ps1'
 if( (Test-Path -Path $functionsPath) )
 {
     foreach( $functionPath in (Get-Item $functionsPath) )

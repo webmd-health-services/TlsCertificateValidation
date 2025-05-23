@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TlsCV-v2</AssemblyName>
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
 
