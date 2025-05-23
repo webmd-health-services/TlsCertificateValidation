@@ -2,7 +2,13 @@
 
 # TlsCertificateValidation Changelog
 
+## 2.0.2
+
+TlsCertificateValidation fails to import side-by-side with other instances of TlsCertificateValidation.
+
 ## 2.0.1
+
+> Released 4 Dec 2024
 
 Removing unused internal, private, nested dependencies.
 

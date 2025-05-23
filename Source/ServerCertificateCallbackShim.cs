@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace TlsCertificateValidation
+namespace TlsCertificateValidation.v2
 {
     public static class ServerCertificateCallbackShim
     {
@@ -12,7 +12,7 @@ namespace TlsCertificateValidation
         {
             if( !write )
                 return;
-            
+
             Console.WriteLine(line);
         }
 
@@ -20,7 +20,8 @@ namespace TlsCertificateValidation
         {
             var enableConsoleOutput =
                 Environment.GetEnvironmentVariable("TLSCV_ENABLE_CONSOLE_OUTPUT");
-            return !string.IsNullOrEmpty(enableConsoleOutput);
+            return !string.IsNullOrEmpty(enableConsoleOutput) &&
+                   enableConsoleOutput.Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
         }
 
         public static void RegisterScriptBlockValidator(ScriptBlock validator)
@@ -52,7 +53,7 @@ namespace TlsCertificateValidation
                         WriteLine(write, "           returned   null");
                         return false;
                     }
-                    
+
                     var baseObject = result[0].BaseObject;
                     var msg = "           returned   ([" + baseObject.GetType().FullName + "] " + baseObject.ToString() +
                               ").";
